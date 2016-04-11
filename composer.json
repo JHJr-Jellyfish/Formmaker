@@ -1,0 +1,14 @@
+{
+    "name": "jhjr/formmaker",
+    "description": "Formmaker for PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Hester",
+            "email": "james.hester@jellyfish.net"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^4.8"
+    }
+}
