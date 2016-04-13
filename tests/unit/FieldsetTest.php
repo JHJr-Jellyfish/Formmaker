@@ -5,25 +5,29 @@ use Formmaker\Fieldset;
 class FieldsetTest extends PHPUnit_Framework_TestCase
 {
 
-	protected function given_there_is_a_fieldset() {
+	protected function there_is_a_fieldset() {
 		return new Fieldset('section');
+	}
+
+	protected function there_is_a_button() {
+		return Mockery::mock('Button');
 	}
 
 	/** @test */
 	public function it_has_be_instantiated() {
-		$fieldset = $this->given_there_is_a_fieldset();
+		$fieldset = $this->there_is_a_fieldset();
 		$this->assertInstanceOf(Fieldset::class, $fieldset);
 	}
 	
 	/** @test */
 	public function it_has_a_slug() {
-		$fieldset = $this->given_there_is_a_fieldset();
+		$fieldset = $this->there_is_a_fieldset();
 		$this->assertEquals('section', $fieldset->slug());
 	}
 
 	/** @test */
 	public function it_can_have_fields() {
-		$fieldset = $this->given_there_is_a_fieldset();
+		$fieldset = $this->there_is_a_fieldset();
 		$fieldset->addField('first name');
 		$fieldset->addField('last name');
 
@@ -32,7 +36,7 @@ class FieldsetTest extends PHPUnit_Framework_TestCase
 
 	/** @test */
 	public function it_can_remove_fields() {
-		$fieldset = $this->given_there_is_a_fieldset();
+		$fieldset = $this->there_is_a_fieldset();
 		$fieldset->addField('first name');
 		$fieldset->addField('last name');
 		$fieldset->addField('removee');
@@ -50,7 +54,7 @@ class FieldsetTest extends PHPUnit_Framework_TestCase
 
 	/** @test */
 	public function it_knows_what_form_it_belongs_to() {
-		$fieldset = $this->given_there_is_a_fieldset();
+		$fieldset = $this->there_is_a_fieldset();
 		$fieldset->assignToForm('Testing');
 
 		$this->assertEquals('Testing', $fieldset->form());
@@ -58,10 +62,20 @@ class FieldsetTest extends PHPUnit_Framework_TestCase
 
 	/** @test */
 	public function it_can_be_removed_from_its_form() {
-		$fieldset = $this->given_there_is_a_fieldset();
+		$fieldset = $this->there_is_a_fieldset();
 		$fieldset->assignToForm('Testing');
 		$fieldset->remove();
 
 		$this->assertEquals(null, $fieldset->form());
+	}
+
+	/** @test */
+	public function it_can_have_buttons() {
+		$fieldset = $this->there_is_a_fieldset();
+		$button = $this->there_is_a_button();
+
+		$fieldset->addButton($button);
+
+		$this->assertContains($button, $fieldset->buttons());
 	}
 }

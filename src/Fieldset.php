@@ -7,6 +7,7 @@ class Fieldset
 	protected $slug;
 	protected $form;
 	protected $fields = [];
+	protected $buttons = [];
 
 	public function __construct($slug)
 	{
@@ -51,5 +52,16 @@ class Fieldset
 	public function form()
 	{
 		return $this->form;
+	}
+
+	public function addButton($button)
+	{
+		$this->buttons[] = $button;
+		return $this;
+	}
+
+	public function buttons()
+	{
+		return $this->buttons;
 	}
 }

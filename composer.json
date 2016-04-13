@@ -1,5 +1,6 @@
 {
     "name": "jhjr/formmaker",
+    "version": "0.0.1",
     "description": "Formmaker for PHP",
     "license": "MIT",
     "authors": [
